@@ -14,6 +14,10 @@ typedef struct
     int capacity;
 } PAIR;
 
+// todo : look up for key
+// todo : hash key
+// todo : improve more!
+
 PAIR *init_Pair(int capacity)
 {
     PAIR *p = malloc(sizeof(PAIR));
