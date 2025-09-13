@@ -2,6 +2,10 @@
 #ifndef STR_IMPL
 #define STR_IMPL
 
+#include <stdbool.h>
+#include <ctype.h>
+#include <string.h>
+
 const char *reserved_keywords[] = {
     "auto",
     "break",
