@@ -6,6 +6,20 @@
 #include <ctype.h>
 #include <string.h>
 
+#define PSTR(STR) #STR
+
+typedef enum
+{
+    ADDITION = 1,
+    MULT,
+    SUBS,
+    MINS,
+    LSHIFT,
+    RSHIFT,
+    ACCESS,
+    DEREF,
+} OPERATOR_TYPE;
+
 const char *reserved_keywords[] = {
     "auto",
     "break",
@@ -34,7 +48,10 @@ const char *reserved_keywords[] = {
     "volatile",
     "sizeof",
     "extern",
-    "const", "union", "enum"};
+    "const",
+    "union",
+    "enum",
+    "size_t"};
 
 bool isKeyword(const char *str)
 {
