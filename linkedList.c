@@ -51,7 +51,7 @@ void print_Node(struct Node *root)
     while (root->next != NULL)
     {
         printf("data :[%d] \n", root->data);
-        root->next;
+        root = root->next;
     }
 }
 
