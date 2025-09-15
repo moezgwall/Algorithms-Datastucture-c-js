@@ -54,3 +54,15 @@ Math.random();
 // typeof instanceof
 typeof "hello";
 users[0] instanceof Object;
+
+
+// convert an object to JSON
+const obj = {name :"zuesing" , age : 10};
+const objtoJSON = JSON.stringify(obj);
+const arrobjtoJSON = JSON.stringify(users);
+
+// covert JSON into an object
+
+const jsonString = '{"name": "tsoding", "age": 42}';
+const objv3 = JSON.parse(jsonString);
+// objv3.name objv3.age  =>legal
