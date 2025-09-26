@@ -72,6 +72,7 @@ void Arena_Reset(Arena *arena)
 
     arena->offset = 0;
 }
+
 int main()
 {
 
@@ -90,8 +91,8 @@ int main()
         data[i] = i;
         printf("address [%p] : %d  \n", (data + i), data[i]);
     }
-
-    Arena_Reset(&arena);
+    size_t dataleft = Dataleft(&arena);
+    printf("\n %d", dataleft);
     // after arena reset offset = 0 ; but data is still a valid pointer
 
     return 0;
