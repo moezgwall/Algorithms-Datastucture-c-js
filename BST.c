@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+// a binary seach tree
 typedef struct Node Node;
  struct Node{
 	int data;
@@ -20,7 +20,7 @@ typedef struct Node Node;
 Node* insert_Node( Node* node , int data){
 	if (node == NULL){
 		node = create_Node(data);
-	}else if (node->data < data){
+	}else if (node->data > data){
 		node->left = insert_Node(node->left, data);
 	}else {
 		node->rigth = insert_Node(node->rigth, data);
@@ -31,7 +31,7 @@ Node* insert_Node( Node* node , int data){
 }
 
 void print_Tree(Node* node){
-		while ( node != NULL){
+		if ( node != NULL){
 			print_Tree(node->left);
 			printf("data : %d",node->data);
 			print_Tree(node->rigth);
