@@ -29,9 +29,6 @@ PAIR *init_Pair(int capacity)
 
 void insert_pair(PAIR *p, char *key, int value)
 {
-    entity e = {NULL};
-    e.data = value;
-    e.key = key;
     if (!p)
     {
         printf("[ERORR] : INVALID ACCESS MEMORY.... \n");
@@ -42,11 +39,21 @@ void insert_pair(PAIR *p, char *key, int value)
         p->capacity *= 2;
         p->set_pair = realloc(p->set_pair, p->capacity * sizeof(entity));
     }
-    p->set_pair[p->size_pair].data = e.data;
-    p->set_pair[p->size_pair].key = e.key;
+    p->set_pair[p->size_pair].data = value;
+    p->set_pair[p->size_pair].key = strdup(key);
     p->size_pair++;
 
     return;
+}
+
+int find_key_index(PAIR *p, const char *key)
+{
+    for (int i = 0; i < p->size_pair; i++)
+    {
+        if (strcmp(p->set_pair[i].key, key) == 0)
+            return i;
+    }
+    return -1;
 }
 
 void show_pair(PAIR *p)
@@ -60,6 +67,19 @@ void show_pair(PAIR *p)
 
         printf("[key : %s | value : %d ]. \n", p->set_pair[i].key, p->set_pair[i].data);
     }
+}
+void free_pair(PAIR *p)
+{
+    if (!p){
+        return;
+    }
+
+    for (int i = 0; i < p->size_pair; i++)
+    {
+        free(p->set_pair[i].key);
+    }
+    free(p->set_pair);
+    free(p);
 }
 
 int main()
