@@ -48,7 +48,7 @@ void print_Node(struct Node *root)
         printf("error");
     }
 
-    while (root->next != NULL)
+    while (root != NULL)
     {
         printf("data :[%d] \n", root->data);
         root = root->next;
