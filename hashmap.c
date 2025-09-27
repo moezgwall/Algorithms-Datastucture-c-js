@@ -28,7 +28,7 @@ HashMap *init_hashmap()
 void resize(HashMap *hm)
 {
     hm->capacity = hm->capacity * 2;
-    hm->tab = (entity *)realloc(hm->tab, hm->capacity * sizeof(entity *));
+    hm->tab = (entity *)realloc(hm->tab, hm->capacity * sizeof(entity));
     return;
 }
 
