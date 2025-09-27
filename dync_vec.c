@@ -43,12 +43,20 @@ void push_element(Vector *vec, int data)
     }
     vec->data[vec->size++] = data;
 }
-
+void free_vec(Vector *vec)
+{
+    if (!vec){
+        return;
+    }
+    free(vec->data);
+    free(vec);
+}
 int main()
 {
     Vector *vec = make_vec(5);
     push_element(vec, 15);
     printf("%d", vec->data[0]);
+    free_vec(vec);
 
     return 0;
 }
