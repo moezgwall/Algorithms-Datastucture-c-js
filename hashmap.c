@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #define initial_capacity 5
 
 typedef struct
@@ -58,7 +59,18 @@ void print(HashMap *hm)
     }
     return;
 }
+void free_hashmap(HashMap *hm)
+{
+    if (!hm) return;
 
+    for (int i = 0; i < hm->size; ++i)
+    {
+        free(hm->tab[i].key);
+        free(hm->tab[i].data);
+    }
+    free(hm->tab);
+    free(hm);
+}
 int main(int argc, char **argv)
 {
     HashMap *hm = init_hashmap();
