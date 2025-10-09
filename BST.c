@@ -138,6 +138,8 @@ int main(){
     printf("%d \n",min->data);
     printf("%d \n", max->data);
 
+
+    free(root);
     // you can try another examples 
 
 
