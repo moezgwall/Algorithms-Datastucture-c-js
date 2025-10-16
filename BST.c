@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-// i learned more about BST
-
 typedef struct Node{
     int data;
     struct Node* left;
@@ -22,13 +19,11 @@ Node* insert(Node* root,int data){
         if (!root) {
             return init(data);
         }
-
         if (data > root->data){
             root->right = insert(root->right,data);
         }else{
             root->left = insert(root->left,data);
         }
-
         return root;
 }
 
@@ -44,7 +39,6 @@ Node* findMinNode(Node* root){
         while (root && root->left != NULL){
             root = root->left;
         }
-
         return root;
 
 }
@@ -64,7 +58,6 @@ Node* search(Node* root, int data){
         }else{
             return search(root->right,data);
         }
-
         return root;
 }
 // order successor
@@ -88,19 +81,14 @@ Node* deleteByOrderSuccessor(Node* root , int data){
                 Node* temp = findMinNode(root->right);
                 root->data = temp->data;
                 root->right = deleteByOrderSuccessor(root->right,temp->data);
-
-
             }
-
         }
-
         return root;
 }
-
 // order predecessor
 Node* deleteByOrderPredecessor(Node* root , int data){
         if (root == NULL) return NULL;
-
+    
         if (data < root->data){
             root->left = deleteByOrderPredecessor(root->left,data);
         }else if (data > root->data){
@@ -118,12 +106,8 @@ Node* deleteByOrderPredecessor(Node* root , int data){
                 Node* temp = findMaxNode(root->left);
                 root->data = temp->data;
                 root->left = deleteByOrderPredecessor(root->left,temp->data);
-
-
             }
-
         }
-
         return root;
 }
 
@@ -137,12 +121,8 @@ int main(){
     Node* max = findMaxNode(root);
     printf("%d \n",min->data);
     printf("%d \n", max->data);
-
-
     free(root);
     // you can try another examples 
-
-
     return 0;
 }
 
