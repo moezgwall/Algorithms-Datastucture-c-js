@@ -38,7 +38,16 @@ void add(HashMap *hm, char *key, int value)
     if (!hm)
     {
         printf("error : hm doesn't exist \n");
+        return;
     }
+    // if the key exist we overwrite data[key]
+    for (int i = 0; i < hm->size;i++){
+        if (strcmp(hm->tab[i].key, key)==0){
+           *((int*)hm->tab[i].data) = value;
+            return;
+        }
+    }
+
     if (hm->size >= hm->capacity)
     {
         resize(hm);
@@ -51,11 +60,38 @@ void add(HashMap *hm, char *key, int value)
     return;
 }
 
+// get an element from the hashmap
+
+int get(HashMap* hm, char* key){
+    for (int i=0; i < hm->size;i++){
+        if (strcmp(hm->tab[i].key, key) ==0){
+            return *((int*)hm->tab[i].data);
+        }
+
+    }
+    // if -1 already a value in the hashmap 
+    // ill ignore this case 
+    // and maybe return a pointer to int so -1 will be just NULL , and get the value by passing 
+    // it to the function args
+    return -1;
+}
+
+// the hash function was missing 
+// not mine but i found it attractive
+int hash(char* key , int capacity){
+    int hash = 0;
+    for (int i = 0; key[i] != '\0';i++){
+        hash = (hash * 31  + key[i] ) % capacity;
+    }
+
+    return hash;
+}
+
 void print(HashMap *hm)
 {
     for (int i = 0; i < hm->size; ++i)
     {
-        printf("[key[%s] , value[%d]] \n ", hm->tab[i].key, *((int *)hm->tab[i].data));
+        printf("\t  HASHED-INDEX[%d] | KEY[%s] -- VALUE[%d] \n ",hash(hm->tab[i].key,hm->capacity), hm->tab[i].key, *((int *)hm->tab[i].data));
     }
     return;
 }
@@ -77,7 +113,11 @@ int main(int argc, char **argv)
     add(hm, "weapons", 15);
     add(hm, "rocket", 10);
     add(hm, "dildo", 5);
+
+
     print(hm);
+
+
 
     return 0;
 }
