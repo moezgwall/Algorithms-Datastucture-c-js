@@ -1,16 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void serialize_img(const char* file_path)
+unsigned char* serialize_img(const char* file_path)
 {
     FILE* new_file = fopen(file_path,"rb");
     if(!new_file)
     {
         fprintf(stderr,"failed to open that file :  <%s>" , file_path);
-        return;
+        return NULL;
     }
-
-    
     fseek(new_file,0,SEEK_END);
     size_t file_size = ftell(new_file);
     fseek(new_file,0,SEEK_SET);
@@ -18,9 +16,8 @@ void serialize_img(const char* file_path)
     unsigned char* buffer = (unsigned char*) malloc(file_size);
     if(!buffer){
         fprintf(stderr,"failed to allocate memory");
-        free(buffer);
         fclose(new_file);
-        return;
+        return NULL;
     }
 
     size_t buffer_size = fread(buffer,1,file_size,new_file);
@@ -28,25 +25,31 @@ void serialize_img(const char* file_path)
         fprintf(stderr,"ERROR: SOMETHING WRONG");
         free(buffer);
         fclose(new_file);
-        return;
+        return NULL;
     }   
-
-    for(size_t i = 0; i < file_size; ++i){
-        printf("%02x",buffer[i]);
-    }
-
-
+        
     fclose(new_file);
-    free(buffer);
+    return buffer;
 }
+
+
+// TODO : serialize in chunks of memory 
+#define MEMO_CHUNK 1024*1024  // 1 MB
+
+void serialize_b_chunk(void);
+
+
+
+
+
 
 
 int main()
 {
     const char* file_path  = "C:\\zeus\\output.ppm";
-    serialize_img(file_path);
+    unsigned char* buffer = serialize_img(file_path);
 
-
+   
 
     return 0;
 }
