@@ -35,7 +35,7 @@ const db = {
         await delay(waiting);
         return usersTable.delete(id);
     },
-    async updateEmail(id, payload) {
+    async updateUserInfo(id, payload) {
         await delay(waiting);
         const user = usersTable.get(id);
         if (!user) return null;
