@@ -77,7 +77,7 @@ int main(int argc, char* argv[]) {
 
     const char* message = argv[1];
     size_t encoded_len, decoded_len;
-
+    
 
     char* encoded = base64_encode((const unsigned char*)message, strlen(message), &encoded_len);
     if (!encoded) {

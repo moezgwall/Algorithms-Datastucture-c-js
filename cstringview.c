@@ -1,40 +1,39 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
-typedef struct
-{
-    const char *data;
-    size_t size;
-} StringViewS;
+/*
+ * string_view : example 
+ * idea : from @tsoding
+ * */
 
-/* we create a string-view from this
-    trash: const char* str
-*/
-static inline StringViewS SvFromStr(const char *str)
-{
-    StringViewS strview = {0};
-    strview.data = str;
-    strview.size = strlen(str);
+typedef struct {
+    char* data;
+    size_t count;
+}Str_view;
 
-    return strview;
+Str_view init_str_view(char* cstr){
+        return (Str_view){
+            .data = cstr,
+            .count = strlen(cstr),
+        };
 }
 
-/* using memcmp to compare on bytes level ,since our string view is not NULL TERMINATED
-and not using strcmp beacause of this fucking NULL TERM '\0'
-*/
-static inline bool CompareSv(StringViewS a, StringViewS b)
-{
-    return a.size == b.size && memcmp(a.data, b.data, a.size) == 0;
+void chop_from_bg(Str_view* str){
+        str->count -=1;
+        str->data +=1; 
+}
+void chop_from_end(Str_view* str){
+        str->count -=1;
 }
 
 int main()
 {
-
-    StringViewS str = SvFromStr("YOUR MOM");
-    StringViewS str1 = SvFromStr("YOUR MOM");
-    printf("are they same words : %d", CompareSv(str, str1));
-
+    Str_view sv = {0};
+    char* cstr = "hello world";
+    sv = init_str_view(cstr);
+    printf("original : %.*s\n",sv.count,sv.data);
+    chop_from_end(&sv);
+    printf("chopped from end: %.*s\n",sv.count,sv.data);
+    
     return 0;
 }

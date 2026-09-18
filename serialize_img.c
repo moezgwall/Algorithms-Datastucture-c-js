@@ -44,6 +44,7 @@ void serialize_b_chunk(void);
 
 
 
+
 int main()
 {
     const char* file_path  = "C:\\zeus\\output.ppm";
