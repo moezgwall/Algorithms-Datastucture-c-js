@@ -2,6 +2,9 @@ const { spawn } = require("child_process");
 
 const spawnOptions = {
   shell: true,
+  // cwd: process.cwd(),
+  // env: process.env,
+  // stdio: 'pipe',
 };
 
 function cmd(prog, args) {

@@ -8,3 +8,6 @@ function normalizeError(errno : unknown): Error{
         return new Error(String(errno));
     }
 }
+
+
+console.log({error: "something wrong"});
