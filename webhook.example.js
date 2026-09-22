@@ -2,7 +2,7 @@ const express = require("express");
 const crypto = require("crypto");
 const app = express();
 
-// we need to data as bytes
+// we need to have data as bytes
 // by overriding a function called
 // verify
 // this applies to all routes
@@ -27,7 +27,7 @@ app.post("/webhooks/stripe", (req, res) => {
   }
   // if our client goes down
   // server could retry sending the same event
-  // if that we don't keep track of those events
+  // if we don't keep track of those events
   // this would cause problems
   // so we need : Idempotency check
   // save the id of each event to be unique
@@ -41,5 +41,6 @@ app.post("/webhooks/stripe", (req, res) => {
   res.status(200).send("ok");
 
   // then we do the processing asynchronously
+  // considered as IO/heavy operation
   // ie processWebHook(req.body);
 });
