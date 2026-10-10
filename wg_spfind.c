@@ -43,11 +43,7 @@ void dijkstra(int graph[NVERTICES][NVERTICES], int source){
     for (int i = 0; i < NVERTICES;i++){
         printf(" vertex: (%d) distance from source : (%d) \n",i,dist[i]);
     }
-
-
 }
-
-
 
 int main(){
     // init graph 
