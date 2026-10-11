@@ -3,5 +3,6 @@
 *.txt 
 *.json 
 q
-
+.\node_modules\
+node_modules
 
