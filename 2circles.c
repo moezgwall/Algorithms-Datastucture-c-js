@@ -5,6 +5,8 @@
 #define CIRCLE_SEGMENTS 64
 #define MAX_PLAYERS 22
 
+/* test generated for reOpengl library */
+
 typedef struct {
   Vec3f position;
   float radius;
@@ -38,10 +40,10 @@ const char *fragmentShaderSrc = "#version 330 core\n"
                                 "   FragColor = vec4(uColor, 1.0);\n"
                                 "}\n";
 
-// Generate a 2D circle's vertices
+
 static void generateCircleVertices(Vec3f *vertices, int segments,
                                    float radius) {
-  vertices[0] = (Vec3f){0.0f, 0.0f, 0.0f}; // center
+  vertices[0] = (Vec3f){0.0f, 0.0f, 0.0f}; 
   for (int i = 0; i <= segments; ++i) {
     float angle = 2.0f * M_PI * i / segments;
     vertices[i + 1] = (Vec3f){cosf(angle) * radius, sinf(angle) * radius, 0.0f};
@@ -117,7 +119,6 @@ void error_callback(int error, const char *description) {
   fprintf(stderr, "GLFW Error [%d]: %s\n", error, description);
 }
 int main() {
-  printf("Starting application...\n");
   glfwSetErrorCallback(error_callback);
   InitGLFW();
 
@@ -144,7 +145,7 @@ int main() {
 
   Vec3f circleVertices[CIRCLE_SEGMENTS + 2];
   generateCircleVertices(circleVertices, CIRCLE_SEGMENTS,
-                         1.0f); // unit radius, will scale later
+                         1.0f);
 
   GLuint vao = CreateVertexArrayObject();
   GLuint vbo = CreateVertexBufferObject(circleVertices, sizeof(circleVertices));
@@ -167,7 +168,7 @@ int main() {
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     glfwSwapBuffers(g_window);
-    Sleep(100); // include windows.h for Sleep
+    Sleep(100); 
   }
 
   printf("Exiting main loop\n");
