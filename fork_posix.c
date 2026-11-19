@@ -7,11 +7,13 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+ // 0 for reading 
+ // 1 for writing 
 
 int main(void) {
   pid_t pid;
   int status;
-  int fd[2]; // 0 for the child, 1 for the parent
+  int fd[2]; 
   if (pipe(fd) == -1) {
     perror("pipe failed");
     return 1;
